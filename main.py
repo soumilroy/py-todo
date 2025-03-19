@@ -16,6 +16,14 @@ def add_new_task():
     print(f"Tasks: {tasks}")
     print("\n\n")
 
+def view_tasks():
+    print(":::View tasks:::")
+    if len(tasks) == 0:
+        print("No tasks found")
+    else:
+        for task in tasks:
+            print(f"ID: {task['id']} - Task: {task['task']}")
+    print("\n\n")
 
 def options_menu():
     print("Welcome to the Todo List Manager!")
@@ -38,7 +46,7 @@ while should_continue:
         if choice == "1":
             add_new_task()
         elif choice == "2":
-            print("Viewing task(s)...")
+            view_tasks();
         elif choice == "3":
             print("Updating task(s)...")
         elif choice == "4":
