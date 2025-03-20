@@ -16,7 +16,7 @@ def add_new_task():
     print("\n\n")
 
 def view_tasks():
-    print(":::View tasks:::")
+    print(":::My tasks:::")
     if len(tasks) == 0:
         print("No tasks found")
     else:
@@ -42,9 +42,19 @@ def update_task():
     selected_task['task'] = new_task;
     
     print(f"Updated task {selected_task['id']} to {new_task}")
-    view_tasks();
+    print("--------------------------------\n") 
 
-    print("\n")
+def delete_task():
+    view_tasks();
+    task_id = input("Select task id::")
+    selected_task = next((task for task in tasks if task['id'] == task_id), None)
+    if selected_task is None:
+        print("\nSeems like you added an invalid task id")
+        return;
+    
+    tasks.remove(selected_task)
+    print(f"Deleted task {selected_task['id']}")
+    print("--------------------------------\n") 
 
 def options_menu():
     print("Welcome to the Todo List Manager!")
@@ -54,7 +64,7 @@ def options_menu():
     print("3. Update task(s)")
     print("4. Delete task(s)")
     print("---------------------------------")
-    print("Add any other character to exit...\n")
+    print("Press any other key to exit...\n")
 
 available_opts = ["1", "2", "3", "4"]
 should_continue = True
@@ -71,7 +81,7 @@ while should_continue:
         elif choice == "3":
             update_task();
         elif choice == "4":
-            print("Deleting task(s)...")
+            delete_task();
     else:
         print("Exiting...")
         should_continue = False
